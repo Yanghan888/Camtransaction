@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -46,5 +47,15 @@ public class IntroductionActivity extends AppCompatActivity {
         setContentView(R.layout.introduction);
         int thingImage=getIntent().getIntExtra("thing_image");
         String thingContent=getIntent().getStringExtra("thing_content");
+        /**
+         * 在此活动中启动dialogActivity
+         */
+        Button button=(Button)findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent=new Intent(IntroductionActivity.this,DialogActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
