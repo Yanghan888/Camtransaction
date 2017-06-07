@@ -19,7 +19,7 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         accountEdit=(EditText)findViewById(R.id.account);
-        accountEdit=(EditText)findViewById(R.id.password);
+        passwordEdit=(EditText)findViewById(R.id.password);
         login=(Button)findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
