@@ -1,5 +1,9 @@
 package com.bignerdranch.android.camtransaction;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
@@ -11,86 +15,160 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
-P124实现瀑布流布局
- */
+import static android.R.attr.bitmap;
+
+
 public class CamtransactionActivity extends AppCompatActivity {
-    private List<Thing> mThingList=new ArrayList<>();
+
+    View thing1;
+    View thing2;
+    View thing3;
+    View thing4;
+    View thing5;
+    View thing6;
+    View thing7;
+    View thing8;
+    Bitmap bitmap;
+    TextView thing_name;
+    TextView thing_price;
+    String name;
+    String price;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient mClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camtransaction);
-        initThings();
-        RecyclerView recyclerView=(RecyclerView)findViewById(R.id.recycler_view);
-        StaggeredGridLayoutManager layoutManager=new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
-        ThingAdapter adapter=new ThingAdapter(mThingList);
-        recyclerView.setAdapter(adapter);
+        setContentView(R.layout.thing_item);
+        thing1 = findViewById(R.id.thing1);
+
+
+        thing1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(CamtransactionActivity.this, IntroductionActivity.class);
+                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bodycare);
+                thing_name = (TextView)findViewById(R.id.name_1);
+                thing_price = (TextView)findViewById(R.id.price_1);
+                name = thing_name.getText().toString();
+                price = thing_price.getText().toString();
+                intent.putExtra("bitmap", bitmap);
+                intent.putExtra("thing_name",name);
+                intent.putExtra("thing_price",price);
+                startActivity(intent);
+            }
+        });
+        thing2 = findViewById(R.id.thing2);
+        thing2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(CamtransactionActivity.this, IntroductionActivity.class);
+                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bodycare);
+                thing_name = (TextView)findViewById(R.id.name_2);
+                thing_price = (TextView)findViewById(R.id.price_2);
+                name = thing_name.getText().toString();
+                price = thing_price.getText().toString();
+                intent.putExtra("bitmap", bitmap);
+                intent.putExtra("thing_name",name);
+                intent.putExtra("thing_price",price);
+                startActivity(intent);
+            }
+        });
+        thing3 = findViewById(R.id.thing3);
+        thing3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(CamtransactionActivity.this, IntroductionActivity.class);
+                startActivity(intent);
+            }
+        });
+        thing4 = findViewById(R.id.thing4);
+        thing4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(CamtransactionActivity.this, IntroductionActivity.class);
+                startActivity(intent);
+            }
+        });
+        thing5 = findViewById(R.id.thing5);
+        thing5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(CamtransactionActivity.this, IntroductionActivity.class);
+                startActivity(intent);
+            }
+        });
+        thing6 = findViewById(R.id.thing6);
+        thing6.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(CamtransactionActivity.this, IntroductionActivity.class);
+                startActivity(intent);
+            }
+        });
+        thing7 = findViewById(R.id.thing7);
+        thing7.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(CamtransactionActivity.this, IntroductionActivity.class);
+                startActivity(intent);
+            }
+        });
+        thing8 = findViewById(R.id.thing8);
+        thing8.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(CamtransactionActivity.this, IntroductionActivity.class);
+                startActivity(intent);
+            }
+        });
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        mClient = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    private void initThings(){
-        for(int i=0;i<2;i++){
-            Thing bodycare=new Thing("Bodycare", R.drawable.bodycare);
-            thingList.add(bodycare);
-            Thing bowl=new Thing("Bowl", R.drawable.bowl);
-            thingList.add(bowl);
-            Thing counter=new Thing("Counter", R.drawable.counter);
-            thingList.add(counter);
-            Thing cup=new Thing("Cup", R.drawable.cup);
-            thingList.add(cup);
-            Thing earphone=new Thing("Earphone", R.drawable.earphone);
-            thingList.add(earphone);
-            Thing fan=new Thing("Fan", R.drawable.fan);
-            thingList.add(fan);
-            Thing globe=new Thing("Globe", R.drawable.globe);
-            thingList.add(globe);
-            Thing iphone=new Thing("Iphone", R.drawable.iphone);
-            thingList.add(iphone);
-            Thing jacket=new Thing("Jacket", R.drawable.jacket);
-            thingList.add(jacket);
-            Thing mirror=new Thing("Mirror", R.drawable.mirror);
-            thingList.add(mirror);
-            Thing mouse=new Thing("Mouse", R.drawable.mouse);
-            thingList.add(mouse);
-            Thing schoolbag=new Thing("Schoolbag", R.drawable.schoolbag);
-            thingList.add(schoolbag);
-            Thing trashcan=new Thing("Trashcan", R.drawable.trasncan);
-            thingList.add(trashcan);
-        }
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("Camtransaction Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
-        View view=inflater.inflate(R.layout.camtransaction,container,false);
-        RecyclerView thingImageRecyclerView=(RecyclerView)view.findViewById(R.id.thing_image_recycler_view);
-        LinearLayoutManager layoutManager=new LinearLayoutManager(LayoutManager);
-        ThingAdapter adapter=new ThingAdapter(getThing());
-        thingImageRecyclerView.setAdapter(adapter);
-        return view;
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        mClient.connect();
+        AppIndex.AppIndexApi.start(mClient, getIndexApiAction());
     }
 
-    private List<Thing>getThing(){
-        List<Thing>thingList=new ArrayList<>();
-        for(int i=1;i<=50;i++){
-            Thing thing=new Thing();
-            thing.setContent(getRandomLengthContent("This is a thing of number"+i+"."));
-            thingList.add(thing);
-        }
-        return thingList;
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(mClient, getIndexApiAction());
+        mClient.disconnect();
     }
 
-    private String getRandomLengthContent(String content){
-        Random random=new Random();
-        int length=random.nextInt(20)+1;
-        StringBuilder builder=new StringBuilder();
-        for(int i=0;i<length;i++){
-            builder.append(content);
-        }
-        return builder.toString();
-    }
 }
